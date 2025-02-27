@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Periódica Interactiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .tabla {
+            display: grid;
+            grid-template-columns: repeat(18, 50px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .elemento {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #2196F3;
+            color: white;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .elemento:hover {
+            background-color: #1976D2;
+            transform: scale(1.1);
+        }
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-contenido {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .cerrar {
+            cursor: pointer;
+            color: red;
+            font-size: 24px;
+            float: right;
+        }
+        .cerrar:hover {
+            color: darkred;
+        }
+        .modal p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mega Periodic Table</h1>
+    <h1>V - 1.0</h1><br>
+    <div class="tabla" id="tabla"></div>
+    
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+            <h2 id="elemento-nombre"></h2>
+            <p><strong>Símbolo:</strong> <span id="elemento-simbolo"></span></p>
+            <p><strong>Número Atómico:</strong> <span id="elemento-numero"></span></p>
+            <p><strong>Masa Atómica:</strong> <span id="elemento-masa"></span></p>
+            <p><strong>Configuración Electrónica:</strong> <span id="elemento-configuracion"></span></p>
+            <p><strong>Estado a Temperatura Ambiente:</strong> <span id="elemento-estado"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const elementos = [
+            { nombre: "Hidrógeno", simbolo: "H", numero: 1, masa: "1.008", configuracion: "1s¹", estado: "Gas", columna: 1, fila: 1 },
+            { nombre: "Helio", simbolo: "He", numero: 2, masa: "4.0026", configuracion: "1s²", estado: "Gas", columna: 18, fila: 1 },
+            { nombre: "Litio", simbolo: "Li", numero: 3, masa: "6.94", configuracion: "[He] 2s¹", estado: "Sólido", columna: 1, fila: 2 },
+            { nombre: "Berilio", simbolo: "Be", numero: 4, masa: "9.0122", configuracion: "[He] 2s²", estado: "Sólido", columna: 2, fila: 2 },
+            { nombre: "Boro", simbolo: "B", numero: 5, masa: "10.81", configuracion: "[He] 2s² 2p¹", estado: "Sólido", columna: 13, fila: 2 },
+            { nombre: "Carbono", simbolo: "C", numero: 6, masa: "12.011", configuracion: "[He] 2s² 2p²", estado: "Sólido", columna: 14, fila: 2 },
+            { nombre: "Nitrógeno", simbolo: "N", numero: 7, masa: "14.007", configuracion: "[He] 2s² 2p³", estado: "Gas", columna: 15, fila: 2 },
+            { nombre: "Oxígeno", simbolo: "O", numero: 8, masa: "15.999", configuracion: "[He] 2s² 2p⁴", estado: "Gas", columna: 16, fila: 2 },
+            { nombre: "Flúor", simbolo: "F", numero: 9, masa: "18.998", configuracion: "[He] 2s² 2p⁵", estado: "Gas", columna: 17, fila: 2 },
+            { nombre: "Neón", simbolo: "Ne", numero: 10, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 18, fila: 2 }
+        ];
+
+        const tabla = document.getElementById("tabla");
+        const modal = document.getElementById("modal");
+        const elementoNombre = document.getElementById("elemento-nombre");
+        const elementoSimbolo = document.getElementById("elemento-simbolo");
+        const elementoNumero = document.getElementById("elemento-numero");
+        const elementoMasa = document.getElementById("elemento-masa");
+        const elementoConfiguracion = document.getElementById("elemento-configuracion");
+        const elementoEstado = document.getElementById("elemento-estado");
+
+        elementos.forEach(el => {
+            let div = document.createElement("div");
+            div.className = "elemento";
+            div.textContent = el.simbolo;
+            div.style.gridColumn = el.columna;
+            div.style.gridRow = el.fila;
+            div.onclick = () => mostrarInfo(el);
+            tabla.appendChild(div);
+        });
+
+        function mostrarInfo(elemento) {
+            elementoNombre.textContent = elemento.nombre;
+            elementoSimbolo.textContent = elemento.simbolo;
+            elementoNumero.textContent = elemento.numero;
+            elementoMasa.textContent = elemento.masa;
+            elementoConfiguracion.textContent = elemento.configuracion;
+            elementoEstado.textContent = elemento.estado;
+            modal.style.display = "flex";
+        }
+
+        function cerrarModal() {
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
