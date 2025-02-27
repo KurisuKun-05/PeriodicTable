@@ -23,6 +23,7 @@
             grid-template-columns: repeat(18, minmax(30px, 1fr)); /* 18 columnas */
             gap: 5px;
             justify-content: center;
+            justify-items: center;
             margin-top: 20px;
             margin: auto;
         }
@@ -51,18 +52,26 @@
         /* Estilos para pantallas pequeñas */
         @media (max-width: 768px) {
             .tabla {
-                grid-template-columns: repeat(10, minmax(30px, 1fr)); /* 10 columnas en pantallas medianas */
+                grid-template-columns: repeat(18, minmax(30px, 1fr)); /* 10 columnas en pantallas medianas */
             }
+            .elemento {
+                max-width: 30px;
+                max-height: 30px;
+                font-size: 0.8rem;
+    }
         }
 
         @media (max-width: 480px) {
             .tabla {
-                grid-template-columns: repeat(6, minmax(30px, 1fr)); /* 6 columnas en pantallas pequeñas */
+                grid-template-columns: repeat(18, minmax(30px, 1fr)); /* 6 columnas en pantallas pequeñas */
             }
 
             .elemento {
-                font-size: 0.8rem;
+                max-width: 25px;
+                max-height: 25px;
+                font-size: 0.7rem;
             }
+
         }
 
         /* Estilos del modal */
@@ -106,7 +115,7 @@
 </head>
 <body>
     <h1>Mega Periodic Table</h1>
-    <h1>V - 1.1.5</h1><br>
+    <h1>V - 1.1.6</h1><br>
     <div class="tabla" id="tabla"></div>
     
     <!-- Modal -->
