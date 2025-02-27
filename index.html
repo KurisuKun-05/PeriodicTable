@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla Periódica Interactiva</title>
+    <title>Mega Periodic Table</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -68,6 +68,19 @@
         }
         }
 
+        @media (max-width: 768px) { /* Para tablets y móviles */
+        .tabla {
+            grid-template-columns: repeat(9, minmax(30px, 1fr)); /* Reduce a 9 columnas */
+        }
+        }
+
+        @media (max-width: 480px) { /* Para teléfonos más pequeños */
+        .tabla {
+            grid-template-columns: repeat(5, minmax(30px, 1fr)); /* Reduce a 5 columnas */
+        }
+        }
+
+
         /* Estilos para el modal */
         .modal {
             display: none;
@@ -105,7 +118,7 @@
 </head>
 <body>
     <h1>Mega Periodic Table</h1>
-    <h1>V - 1.1</h1><br>
+    <h1>V - 1.1.1</h1><br>
     <div class="tabla" id="tabla"></div>
     
     <!-- Modal -->
