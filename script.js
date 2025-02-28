@@ -67,22 +67,31 @@ elementos.forEach(el => {
     div.textContent = el.simbolo;
     div.style.gridColumn = el.columna;
     div.style.gridRow = el.fila;
-    div.style.backgroundColor = "#000"; // Fondo negro
-    div.style.border = `6px solid ${coloresCategorias[el.categoria] || "#2196F3"}`; // Borde de color
-    div.style.color = "#FFF"; // Texto blanco para contraste
+
+    // 1) Calculamos tamaños según el ancho de la ventana
+    let tamaño = window.innerWidth < 600 ? "8vw" : "50px";
+    let fontSize = window.innerWidth < 600 ? "3vw" : "20px";
+    let borderWidth = window.innerWidth < 600 ? "4px" : "6px";
+
+    // 2) Asignamos estilos
+    div.style.backgroundColor = "#000"; 
+    div.style.border = `${borderWidth} solid ${coloresCategorias[el.categoria] || "#2196F3"}`;
+    div.style.color = "#FFF";
     div.style.textAlign = "center";
     div.style.display = "flex";
     div.style.alignItems = "center";
     div.style.justifyContent = "center";
-    div.style.fontSize = "20px"; // Ajusta según necesidad
+    div.style.fontSize = fontSize;
     div.style.fontWeight = "bold";
-    div.style.width = "50px"; // Ajusta el tamaño según la tabla
-    div.style.height = "50px";
-    div.style.borderRadius = "10px"; // Bordes redondeados opcionales
+    div.style.width = tamaño;
+    div.style.height = tamaño;
+    div.style.borderRadius = "10px";
 
+    // 3) Evento de clic
     div.onclick = () => mostrarInfo(el);
     tabla.appendChild(div);
 });
+
 
 
 function mostrarInfo(elemento) {
