@@ -4,120 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mega Periodic Table</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .tabla {
-            width: 100%;
-            max-width: 100vw;
-            overflow-x: auto;
-            display: grid;
-            grid-template-columns: repeat(18, minmax(30px, 1fr)); /* 18 columnas */
-            gap: 5px;
-            justify-content: center;
-            justify-items: center;
-            margin-top: 20px;
-            margin: auto;
-        }
-
-        /* Estilos de los elementos */
-        .elemento {
-            width: 100%;
-            aspect-ratio: 1; /* Hace que los elementos sean cuadrados */
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            background-color: #2196F3;
-            color: white;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-
-        .elemento:hover {
-            background-color: #1976D2;
-            transform: scale(1.1);
-        }
-
-        /* Estilos para pantallas pequeñas */
-        @media (max-width: 768px) {
-            .tabla {
-                grid-template-columns: repeat(18, minmax(30px, 1fr)); /* 10 columnas en pantallas medianas */
-            }
-            .elemento {
-                max-width: 30px;
-                max-height: 30px;
-                font-size: 0.8rem;
-    }
-        }
-
-        @media (max-width: 480px) {
-            .tabla {
-                grid-template-columns: repeat(18, minmax(30px, 1fr)); /* 6 columnas en pantallas pequeñas */
-            }
-
-            .elemento {
-                max-width: 25px;
-                max-height: 25px;
-                font-size: 0.7rem;
-            }
-
-        }
-
-        /* Estilos del modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-contenido {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            width: 350px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .cerrar {
-            cursor: pointer;
-            color: red;
-            font-size: 24px;
-            float: right;
-        }
-
-        .cerrar:hover {
-            color: darkred;
-        }
-
-        .modal p {
-            font-size: 16px;
-            margin: 5px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al CSS -->
 </head>
 <body>
+
     <h1>Mega Periodic Table</h1>
-    <h1>V - 1.1.6</h1><br>
+    <h1>V - 1.1.7</h1><br>
+
     <div class="tabla" id="tabla"></div>
-    
+ 
     <!-- Modal -->
     <div class="modal" id="modal">
         <div class="modal-contenido">
@@ -131,80 +26,7 @@
         </div>
     </div>
 
-    <script>
-        const elementos = [
-            { nombre: "Hidrógeno", simbolo: "H", numero: 1, masa: "1.008", configuracion: "1s¹", estado: "Gas", columna: 1, fila: 1 },
-            { nombre: "Helio", simbolo: "He", numero: 2, masa: "4.0026", configuracion: "1s²", estado: "Gas", columna: 18, fila: 1 },
-            { nombre: "Litio", simbolo: "Li", numero: 3, masa: "6.94", configuracion: "[He] 2s¹", estado: "Sólido", columna: 1, fila: 2 },
-            { nombre: "Berilio", simbolo: "Be", numero: 4, masa: "9.0122", configuracion: "[He] 2s²", estado: "Sólido", columna: 2, fila: 2 },
-            { nombre: "Boro", simbolo: "B", numero: 5, masa: "10.81", configuracion: "[He] 2s² 2p¹", estado: "Sólido", columna: 13, fila: 2 },
-            { nombre: "Carbono", simbolo: "C", numero: 6, masa: "12.011", configuracion: "[He] 2s² 2p²", estado: "Sólido", columna: 14, fila: 2 },
-            { nombre: "Nitrógeno", simbolo: "N", numero: 7, masa: "14.007", configuracion: "[He] 2s² 2p³", estado: "Gas", columna: 15, fila: 2 },
-            { nombre: "Oxígeno", simbolo: "O", numero: 8, masa: "15.999", configuracion: "[He] 2s² 2p⁴", estado: "Gas", columna: 16, fila: 2 },
-            { nombre: "Flúor", simbolo: "F", numero: 9, masa: "18.998", configuracion: "[He] 2s² 2p⁵", estado: "Gas", columna: 17, fila: 2 },
-            { nombre: "Neón", simbolo: "Ne", numero: 10, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 18, fila: 2 },
-            /* V 1.1 */
-            { nombre: "Sodio", simbolo: "Na", numero: 11, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 1, fila: 3 },
-            { nombre: "Magnesio", simbolo: "Mg", numero: 12, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 2, fila: 3 },
-            { nombre: "Aluminio", simbolo: "Al", numero: 13, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 13, fila: 3 },
-            { nombre: "Silicio", simbolo: "Si", numero: 14, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 14, fila: 3 },
-            { nombre: "Fósforo", simbolo: "P", numero: 15, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 15, fila: 3 },
-            { nombre: "Azufre", simbolo: "S", numero: 16, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 16, fila: 3 },
-            { nombre: "Cloro", simbolo: "Cl", numero: 17, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 17, fila: 3 },
-            { nombre: "Argón", simbolo: "Ar", numero: 18, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 18, fila: 3 },
+    <script src="script.js"></script> <!-- Enlace al JS -->
 
-            { nombre: "Potasio", simbolo: "K", numero: 19, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 1, fila: 4 },
-            { nombre: "Calcio", simbolo: "Ca", numero: 20, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 2, fila: 4 },
-            { nombre: "Escandio", simbolo: "Sc", numero: 21, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 3, fila: 4 },
-            { nombre: "Titanio", simbolo: "Ti", numero: 22, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 4, fila: 4 },
-            { nombre: "Vanadio", simbolo: "V", numero: 23, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 5, fila: 4 },
-            { nombre: "Cromo", simbolo: "Cr", numero: 24, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 6, fila: 4 },
-            { nombre: "Manganeso", simbolo: "Mn", numero: 25, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 7, fila: 4 },
-            { nombre: "Hierro", simbolo: "Fe", numero: 26, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 8, fila: 4 },
-            { nombre: "Cobalto", simbolo: "Co", numero: 27, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 9, fila: 4 },
-            { nombre: "Níquel", simbolo: "Ni", numero: 28, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 10, fila: 4 },
-            { nombre: "Cobre", simbolo: "Cu", numero: 29, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 11, fila: 4 },
-            { nombre: "Zinc", simbolo: "Zn", numero: 30, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 12, fila: 4 },
-            { nombre: "Galio", simbolo: "Ga", numero: 31, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 13, fila: 4 },
-            { nombre: "Germanio", simbolo: "Ge", numero: 32, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 14, fila: 4 },
-            { nombre: "Arsénico", simbolo: "As", numero: 33, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 15, fila: 4 },
-            { nombre: "Selenio", simbolo: "Se", numero: 34, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 16, fila: 4 },
-            { nombre: "Bromo", simbolo: "Br", numero: 35, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 17, fila: 4 },
-            { nombre: "Criptín", simbolo: "Kr", numero: 36, masa: "20.180", configuracion: "[He] 2s² 2p⁶", estado: "Gas", columna: 18, fila: 4 }
-        ];
-
-        const tabla = document.getElementById("tabla");
-        const modal = document.getElementById("modal");
-        const elementoNombre = document.getElementById("elemento-nombre");
-        const elementoSimbolo = document.getElementById("elemento-simbolo");
-        const elementoNumero = document.getElementById("elemento-numero");
-        const elementoMasa = document.getElementById("elemento-masa");
-        const elementoConfiguracion = document.getElementById("elemento-configuracion");
-        const elementoEstado = document.getElementById("elemento-estado");
-
-        elementos.forEach(el => {
-            let div = document.createElement("div");
-            div.className = "elemento";
-            div.textContent = el.simbolo;
-            div.style.gridColumn = el.columna;
-            div.style.gridRow = el.fila;
-            div.onclick = () => mostrarInfo(el);
-            tabla.appendChild(div);
-        });
-
-        function mostrarInfo(elemento) {
-            elementoNombre.textContent = elemento.nombre;
-            elementoSimbolo.textContent = elemento.simbolo;
-            elementoNumero.textContent = elemento.numero;
-            elementoMasa.textContent = elemento.masa;
-            elementoConfiguracion.textContent = elemento.configuracion;
-            elementoEstado.textContent = elemento.estado;
-            modal.style.display = "flex";
-        }
-
-        function cerrarModal() {
-            modal.style.display = "none";
-        }
-    </script>
 </body>
 </html>
