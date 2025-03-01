@@ -41,27 +41,50 @@ h1 {
     transform: scale(1.1);
 }
 
-@media (max-width: 768px) {
+/* Pantallas grandes (Laptops y monitores) */
+@media (max-width: 1200px) {
     .elemento {
-        width: min(8vw, 40px);
-        height: min(8vw, 40px);
-        font-size: clamp(0.5rem, 1.3vw, 0.9rem);
-        border-width: clamp(1px, 0.4vw, 4px);
+        width: min(5vw, 50px);
+        height: min(5vw, 50px);
     }
 }
 
+/* Tablets en horizontal */
+@media (max-width: 1024px) {
+    .elemento {
+        width: min(6vw, 45px);
+        height: min(6vw, 45px);
+        font-size: clamp(0.7rem, 1.5vw, 1rem);
+    }
+}
+
+/* Tablets en vertical y Phablets */
+@media (max-width: 600px) {
+    .elemento {
+        width: min(8vw, 40px);
+        height: min(8vw, 40px);
+        font-size: clamp(0.6rem, 1.3vw, 0.9rem);
+        border-width: clamp(2px, 0.4vw, 4px);
+    }
+}
+
+/* Teléfonos medianos */
 @media (max-width: 480px) {
     .elemento {
         width: min(10vw, 35px);
         height: min(10vw, 35px);
-        font-size: clamp(0.4rem, 1vw, 0.8rem);
+        font-size: clamp(0.5rem, 1vw, 0.8rem);
         border-width: clamp(1px, 0.3vw, 3px);
     }
 }
 
-@media (max-width: 480px) {
-    .tabla {
-        gap: 2px;
+/* Teléfonos pequeños */
+@media (max-width: 320px) {
+    .elemento {
+        width: min(12vw, 30px);
+        height: min(12vw, 30px);
+        font-size: clamp(0.4rem, 0.9vw, 0.7rem);
+        border-width: clamp(1px, 0.2vw, 2px);
     }
 }
 
