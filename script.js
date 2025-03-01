@@ -44,8 +44,9 @@ const coloresCategorias = {
     "metal-alcalino": "#FF6666",
     "metal-alcalinoterreo": "#FFB266",
     "metal-transicion": "#6699FF",
+    "metal-posttransicion": "#2FC8E1",
     "metaloide": "#66CC66",
-    "no-metal": "#FFFF66",
+    "no-metal": "#F7D547",
     "halogeno": "#FF66B2",
     "gas-noble": "#CC99FF",
     "lantanido": "#AAAAAA",
@@ -71,7 +72,8 @@ elementos.forEach(el => {
     // 1) Calculamos tamaños según el ancho de la ventana
     let tamaño = window.innerWidth < 600 ? "min(8vw, 50px)" : "50px";
     let fontSize = window.innerWidth < 600 ? "min(3vw, 20px)" : "20px";
-    let borderWidth = window.innerWidth < 600 ? "4px" : "6px";
+    //let borderWidth = window.innerWidth < 600 ? "4px" : "6px";
+    let borderWidth = window.innerWidth < 600 ? "2px" : "3px"; // Reduce el grosor
 
     // 2) Asignamos estilos
     div.style.backgroundColor = "#000"; 
@@ -95,13 +97,40 @@ elementos.forEach(el => {
 
 
 function mostrarInfo(elemento) {
+    // Actualizar contenido del modal
     elementoNombre.textContent = elemento.nombre;
     elementoSimbolo.textContent = elemento.simbolo;
     elementoNumero.textContent = elemento.numero;
     elementoMasa.textContent = elemento.masa;
     elementoConfiguracion.textContent = elemento.configuracion;
     elementoEstado.textContent = elemento.estado;
+
+    // Obtener color del borde según la categoría del elemento
+    let colorBorde = obtenerColorPorElemento(elemento);
+
+    // Aplicar color del borde al modal
+    document.querySelector(".modal-contenido").style.setProperty("--borde-color", colorBorde);
+
+    // Mostrar el modal
     modal.style.display = "flex";
+}
+
+// Función para definir colores según la categoría del elemento
+function obtenerColorPorElemento(elemento) {
+    const colores = {
+        "metal-alcalino": "#FF6666",
+        "metal-alcalinoterreo": "#FFB266",
+        "metal-transicion": "#6699FF",
+        "metal-posttransicion": "#2FC8E1",
+        "metaloide": "#66CC66",
+        "no-metal": "#F7D547",
+        "halogeno": "#FF66B2",
+        "gas-noble": "#CC99FF",
+        "lantanido": "#AAAAAA",
+        "actinido": "#888888"        
+    };
+
+    return colores[elemento.categoria] || "#FFF"; // Color por defecto si no se encuentra la categoría
 }
 
 function cerrarModal() {
