@@ -38,11 +38,10 @@ h1 {
 /* Estilos de los elementos */
 .elemento {
     font-family: "Indie Flower", cursive;
-    width: min(6vw, 50px);
-    height: min(6vw, 50px);
-    font-size: clamp(0.6rem, 1.5vw, 1rem);
-    /*border-width: clamp(2px, 0.5vw, 6px);*/
-    border-width: clamp(1px, 0.3vw, 4px);
+    width: min(8vw, 65px);  /* Aumenté de 6vw a 8vw */
+    height: min(8vw, 65px);
+    font-size: clamp(0.8rem, 2vw, 1.2rem); /* Aumenté el tamaño del texto */
+    border-width: clamp(2px, 0.5vw, 6px);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -52,6 +51,7 @@ h1 {
     background-color: #2196F3;
     color: white;
     transition: transform 0.2s, background-color 0.2s;
+    box-sizing: border-box;
 }
 
 .elemento:hover {

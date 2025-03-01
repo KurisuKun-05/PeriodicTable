@@ -70,10 +70,9 @@ elementos.forEach(el => {
     div.style.gridRow = el.fila;
 
     // 1) Calculamos tamaños según el ancho de la ventana
-    let tamaño = window.innerWidth < 600 ? "min(8vw, 50px)" : "50px";
-    let fontSize = window.innerWidth < 600 ? "min(3vw, 20px)" : "20px";
-    //let borderWidth = window.innerWidth < 600 ? "4px" : "6px";
-    let borderWidth = window.innerWidth < 600 ? "2px" : "3px"; // Reduce el grosor
+    let tamaño = window.innerWidth < 600 ? "min(10vw, 65px)" : "65px";
+    let fontSize = window.innerWidth < 600 ? "min(4vw, 24px)" : "24px"; // Texto más grande
+    let borderWidth = window.innerWidth < 600 ? "3px" : "4px"; // Ajustar borde
 
     // 2) Asignamos estilos
     div.style.backgroundColor = "#000"; 
