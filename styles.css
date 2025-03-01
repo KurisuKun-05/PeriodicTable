@@ -13,7 +13,7 @@ h1 {
     grid-template-columns: repeat(18, auto); /* 18 columnas */
     grid-template-rows: repeat(7, auto); /* Número de filas según sea necesario */
     gap: 5px; /* Espacio entre elementos */
-    justify-content: start;
+    justify-content: center;
     padding: 10px;
     place-items: center;
     min-width: 800px; /* Asegura que la tabla tenga un ancho mínimo */
