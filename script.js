@@ -129,6 +129,7 @@ const elementos = [
     { nombre: "Laurencio", simbolo: "Lr", numero: 103, masa: "262", configuracion: "[Rn] 5f¹⁴ 6d¹ 7s²", estado: "Sólido", columna: 17, fila: 10, categoria: "" }
 ];
 
+// 🎨 Definir los colores de cada categoría
 const coloresCategorias = {
     "metal-alcalino": "#FF6666",
     "metal-alcalinoterreo": "#FFB266",
@@ -142,27 +143,22 @@ const coloresCategorias = {
     "actinido": "#888888"
 };
 
+// 📏 Definir los breakpoints y tamaños según el ancho de pantalla
+const breakpoints = [
+    { min: 1024, max: Infinity, tamaño: "min(8vw, 65px)", fontSize: "min(3vw, 24px)", borderWidth: "4px" },
+    { min: 769, max: 1023, tamaño: "min(6vw, 45px)", fontSize: "clamp(0.7rem, 1.5vw, 1rem)", borderWidth: "3.5px" },
+    { min: 601, max: 768, tamaño: "min(7vw, 42px)", fontSize: "clamp(0.65rem, 1.4vw, 0.95rem)", borderWidth: "3px" },
+    { min: 376, max: 600, tamaño: "min(9vw, 38px)", fontSize: "clamp(0.55rem, 1.2vw, 0.85rem)", borderWidth: "2.5px" },
+    { min: 320, max: 375, tamaño: "min(11vw, 32px)", fontSize: "clamp(0.45rem, 0.9vw, 0.75rem)", borderWidth: "2px" }
+];
+
+function getResponsiveValues() {
+    let width = window.innerWidth;
+    return breakpoints.find(bp => width >= bp.min && width <= bp.max) || breakpoints[breakpoints.length - 1];
+}
+
+
 const tabla = document.getElementById("tabla");
-const lantanidos = document.createElement("div");
-
-// Crear una celda vacía que ocupe 18 columnas (ancho completo)
-const separador = document.createElement("div");
-separador.style.gridColumn = "span 18";
-separador.style.height = "25px";  // Espaciado visual
-tabla.appendChild(separador);
-
-lantanidos.className = "elemento bloque-no-clickeable";
-lantanidos.textContent = "57-71";
-lantanidos.style.gridColumn = 3;
-lantanidos.style.gridRow = 6;
-tabla.appendChild(lantanidos);
-
-const actinidos = document.createElement("div");
-actinidos.className = "elemento bloque-no-clickeable";
-actinidos.textContent = "89-103";
-actinidos.style.gridColumn = 3;
-actinidos.style.gridRow = 7;
-tabla.appendChild(actinidos);
 
 const modal = document.getElementById("modal");
 const elementoNombre = document.getElementById("elemento-nombre");
@@ -172,6 +168,38 @@ const elementoMasa = document.getElementById("elemento-masa");
 const elementoConfiguracion = document.getElementById("elemento-configuracion");
 const elementoEstado = document.getElementById("elemento-estado");
 
+// 🆕 Obtener valores responsivos
+const { tamaño, fontSize, borderWidth } = getResponsiveValues();
+
+// Crear una celda vacía para separación visual
+const separador = document.createElement("div");
+separador.style.gridColumn = "span 18";
+separador.style.height = "25px"; 
+tabla.appendChild(separador);
+
+const lantanidos = document.createElement("div");
+lantanidos.className = "bloque-no-clickeable"; 
+lantanidos.style.border = `${borderWidth} solid ${coloresCategorias["lantanido"]}`;
+lantanidos.classList.add("lantanido");
+lantanidos.textContent = "57-71";
+lantanidos.style.gridColumn = 3;
+lantanidos.style.gridRow = 6;
+lantanidos.style.width = tamaño;
+lantanidos.style.height = tamaño;
+tabla.appendChild(lantanidos);
+
+const actinidos = document.createElement("div");
+actinidos.className = "bloque-no-clickeable";
+actinidos.style.border = `${borderWidth} solid ${coloresCategorias["actinido"]}`;
+actinidos.classList.add("actinido");
+actinidos.textContent = "89-103";
+actinidos.style.gridColumn = 3;
+actinidos.style.gridRow = 7;
+actinidos.style.width = tamaño;
+actinidos.style.height = tamaño;
+tabla.appendChild(actinidos);
+
+
 elementos.forEach(el => {
     let div = document.createElement("div");
     div.className = "elemento";
@@ -179,40 +207,24 @@ elementos.forEach(el => {
     div.style.gridColumn = el.columna;
     div.style.gridRow = el.fila;
 
-    // 1) Calculamos tamaños según el ancho de la ventana
-    let tamaño = window.innerWidth < 600 ? "min(10vw, 65px)" : "65px";
-    let fontSize = window.innerWidth < 600 ? "min(4vw, 24px)" : "24px"; // Texto más grande
-    let borderWidth = window.innerWidth < 600 ? "3px" : "4px"; // Ajustar borde
-
-    // 2) Asignamos estilos
-    div.style.backgroundColor = "#000"; 
+    // Aplicar valores responsivos
+    div.style.width = tamaño;
+    div.style.height = tamaño;
+    div.style.fontSize = fontSize;
     div.style.border = `${borderWidth} solid ${coloresCategorias[el.categoria] || "#2196F3"}`;
+    
+    div.style.backgroundColor = "#000"; 
     div.style.color = "#FFF";
     div.style.textAlign = "center";
     div.style.display = "flex";
     div.style.alignItems = "center";
     div.style.justifyContent = "center";
-    div.style.fontSize = fontSize;
     div.style.fontWeight = "bold";
-    div.style.width = tamaño;
-    div.style.height = tamaño;
     div.style.borderRadius = "10px";
 
-    // 3) Evento de clic
     div.onclick = () => mostrarInfo(el);
     tabla.appendChild(div);
 });
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Mostrar el modal al cargar la página
-    document.getElementById("modal-anuncio").style.display = "flex";
-});
-
-function cerrarAnuncio() {
-    document.getElementById("modal-anuncio").style.display = "none";
-}
-
 
 function mostrarInfo(elemento) {
     // Actualizar contenido del modal
@@ -254,3 +266,13 @@ function obtenerColorPorElemento(elemento) {
 function cerrarModal() {
     modal.style.display = "none";
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Mostrar el modal al cargar la página
+    document.getElementById("modal-anuncio").style.display = "flex";
+});
+
+function cerrarAnuncio() {
+    document.getElementById("modal-anuncio").style.display = "none";
+}
+

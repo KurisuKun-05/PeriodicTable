@@ -19,6 +19,7 @@ h1 {
 .tantalio-color { color: #6699FF; }
 .vanadio-color { color: #6699FF; }
 
+
 .tabla {
     display: grid;
     grid-template-columns: repeat(18, auto); /* 18 columnas */
@@ -36,9 +37,23 @@ h1 {
     padding: 10px;
 }
 .bloque-no-clickeable {
+    font-family: "Indie Flower", cursive;
     background-color: #444 !important; /* Color distinto */
+    color: white;
     cursor: default !important; /* Cursor normal, sin clic */
     pointer-events: none !important; /* Desactiva interacciones */
+    font-weight: bold;
+
+    width: min(8vw, 65px);  /* Aumenté de 6vw a 8vw */
+    height: min(8vw, 65px);
+    font-size: clamp(0.8rem, 2vw, 1.2rem); /* Aumenté el tamaño del texto */
+    border-width: clamp(2px, 0.5vw, 6px);
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 
@@ -68,6 +83,10 @@ h1 {
 
 /* Pantallas grandes (Laptop y monitores) */
 @media (min-width: 1024px) {
+    .bloque-no-clickeable {
+        width: min(8vw, 65px);  /* Aumenté de 6vw a 8vw */
+        height: min(8vw, 65px);
+    }
     .elemento {
         width: min(5vw, 50px);
         height: min(5vw, 50px);
