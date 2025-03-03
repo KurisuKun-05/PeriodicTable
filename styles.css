@@ -66,16 +66,19 @@ h1 {
     transform: scale(1.1);
 }
 
-/* Pantallas grandes (Laptops y monitores) */
-@media (max-width: 1200px) {
+/* Pantallas grandes (Laptop y monitores) */
+@media (min-width: 1024px) {
     .elemento {
         width: min(5vw, 50px);
         height: min(5vw, 50px);
     }
 }
 
-/* Tablets en horizontal */
-@media (max-width: 1024px) {
+/* Tablets en horizontal (1024px) y vertical (768px) */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .tabla {
+        justify-content: start;
+    }
     .elemento {
         width: min(6vw, 45px);
         height: min(6vw, 45px);
@@ -83,44 +86,42 @@ h1 {
     }
 }
 
-/* Tablets en vertical y Phablets */
-@media (max-width: 600px) {
-    .tabla{
+/* Tablets pequeñas y Phablets (768px - 600px) */
+@media (min-width: 601px) and (max-width: 768px) {
+    .tabla {
         justify-content: start;
     }
     .elemento {
-        width: min(8vw, 40px);
-        height: min(8vw, 40px);
-        font-size: clamp(0.6rem, 1.3vw, 0.9rem);
-        border-width: clamp(2px, 0.4vw, 4px);
+        width: min(7vw, 42px);
+        height: min(7vw, 42px);
+        font-size: clamp(0.65rem, 1.4vw, 0.95rem);
     }
 }
 
-/* Teléfonos medianos */
-@media (max-width: 480px) {
-    .tabla{
+/* Teléfonos grandes y medianos (600px - 376px) */
+@media (min-width: 376px) and (max-width: 600px) {
+    .tabla {
         justify-content: start;
     }
     .elemento {
-        width: min(10vw, 35px);
-        height: min(10vw, 35px);
-        font-size: clamp(0.5rem, 1vw, 0.8rem);
-        border-width: clamp(1px, 0.3vw, 3px);
+        width: min(9vw, 38px);
+        height: min(9vw, 38px);
+        font-size: clamp(0.55rem, 1.2vw, 0.85rem);
     }
 }
 
-/* Teléfonos pequeños */
-@media (max-width: 320px) {
-    .tabla{
+/* Teléfonos pequeños (375px - 320px) */
+@media (max-width: 375px) {
+    .tabla {
         justify-content: start;
     }
     .elemento {
-        width: min(12vw, 30px);
-        height: min(12vw, 30px);
-        font-size: clamp(0.4rem, 0.9vw, 0.7rem);
-        border-width: clamp(1px, 0.2vw, 2px);
+        width: min(11vw, 32px);
+        height: min(11vw, 32px);
+        font-size: clamp(0.45rem, 0.9vw, 0.75rem);
     }
 }
+
 
 /* Estilos del modal */
 #modal-anuncio {
