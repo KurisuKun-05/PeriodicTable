@@ -9,6 +9,8 @@ h1 {
     font-family: "Indie Flower", cursive;
 }
 
+.version-color { color: #2196F3; }
+
 .default-color { color: #ffffff; }
 .galio-color { color: #2FC8E1; }
 .fosforo-color { color: #F7D547; }
@@ -83,6 +85,9 @@ h1 {
 
 /* Tablets en vertical y Phablets */
 @media (max-width: 600px) {
+    .tabla{
+        justify-content: start;
+    }
     .elemento {
         width: min(8vw, 40px);
         height: min(8vw, 40px);
@@ -93,6 +98,9 @@ h1 {
 
 /* Teléfonos medianos */
 @media (max-width: 480px) {
+    .tabla{
+        justify-content: start;
+    }
     .elemento {
         width: min(10vw, 35px);
         height: min(10vw, 35px);
@@ -103,6 +111,9 @@ h1 {
 
 /* Teléfonos pequeños */
 @media (max-width: 320px) {
+    .tabla{
+        justify-content: start;
+    }
     .elemento {
         width: min(12vw, 30px);
         height: min(12vw, 30px);
@@ -130,7 +141,7 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 350px;
+    width: 500px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 .cerrar-anuncio {

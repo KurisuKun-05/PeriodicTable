@@ -39,7 +39,7 @@ const elementos = [
     { nombre: "Bromo", simbolo: "Br", numero: 35, masa: "79.904", configuracion: "[Ar] 3d¹⁰ 4s² 4p⁵", estado: "Liquido", columna: 17, fila: 4, categoria: "halogeno" },
     { nombre: "Criptón", simbolo: "Kr", numero: 36, masa: "83.798", configuracion: "[Ar] 3d¹⁰ 4s² 4p⁶", estado: "Gas", columna: 18, fila: 4, categoria: "gas-noble" },
 
-    { nombre: "Rubidio", simbolo: "Rb", numero: 37, masa: "85.468", configuracion: "[Kr] 5s¹", estado: "Sólido", columna: 1, fila: 5, categoria: "" },
+    { nombre: "Rubidio", simbolo: "Rb", numero: 37, masa: "85.468", configuracion: "[Kr] 5s¹", estado: "Sólido", columna: 1, fila: 5, categoria: "metal-alcalino" },
     { nombre: "Estroncio", simbolo: "Sr", numero: 38, masa: "87.62", configuracion: "[Kr] 5s²", estado: "Sólido", columna: 2, fila: 5, categoria: "" },
     { nombre: "Itrio", simbolo: "Y", numero: 39, masa: "88.906", configuracion: "[Kr] 4d¹ 5s²", estado: "Sólido", columna: 3, fila: 5, categoria: "" },
     { nombre: "Circonio", simbolo: "Zr", numero: 40, masa: "91.224", configuracion: "[Kr] 4d² 5s²", estado: "Sólido", columna: 4, fila: 5, categoria: "" },
