@@ -20,7 +20,7 @@ h1 {
 .tabla {
     display: grid;
     grid-template-columns: repeat(18, auto); /* 18 columnas */
-    grid-template-rows: repeat(7, auto); /* Número de filas según sea necesario */
+    grid-template-rows: repeat(10, auto); /* Número de filas según sea necesario */
     gap: 5px; /* Espacio entre elementos */
     justify-content: center;
     padding: 10px;
@@ -32,6 +32,11 @@ h1 {
     width: 100%;
     overflow-x: auto; /* Permite desplazamiento horizontal */
     padding: 10px;
+}
+.bloque-no-clickeable {
+    background-color: #444 !important; /* Color distinto */
+    cursor: default !important; /* Cursor normal, sin clic */
+    pointer-events: none !important; /* Desactiva interacciones */
 }
 
 
@@ -107,6 +112,38 @@ h1 {
 }
 
 /* Estilos del modal */
+#modal-anuncio {
+    display: flex; /* Se mostrará por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-contenido-anuncio {
+    background: #222;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+.cerrar-anuncio {
+    cursor: pointer;
+    color: #ff4d4d;
+    font-size: 24px;
+    float: right;
+    transition: color 0.2s;
+}
+.cerrar:hover {
+    color: #ff0000;
+}
+
 .modal {
     display: none;
     position: fixed;
