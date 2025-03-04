@@ -145,11 +145,11 @@ const coloresCategorias = {
 
 // 📏 Definir los breakpoints y tamaños según el ancho de pantalla
 const breakpoints = [
-    { min: 1024, max: Infinity, tamaño: "min(8vw, 65px)", fontSize: "min(3vw, 24px)", borderWidth: "4px" },
-    { min: 769, max: 1023, tamaño: "min(6vw, 45px)", fontSize: "clamp(0.7rem, 1.5vw, 1rem)", borderWidth: "3.5px" },
-    { min: 601, max: 768, tamaño: "min(7vw, 42px)", fontSize: "clamp(0.65rem, 1.4vw, 0.95rem)", borderWidth: "3px" },
-    { min: 376, max: 600, tamaño: "min(9vw, 38px)", fontSize: "clamp(0.55rem, 1.2vw, 0.85rem)", borderWidth: "2.5px" },
-    { min: 320, max: 375, tamaño: "min(11vw, 32px)", fontSize: "clamp(0.45rem, 0.9vw, 0.75rem)", borderWidth: "2px" }
+    { min: 1024, max: Infinity, tamaño: "min(8vw, 65px)", fontSize: "clamp(16px, 3vw, 24px)", borderWidth: "4px" },
+    { min: 769, max: 1023, tamaño: "min(6vw, 45px)", fontSize: "clamp(14px, 2.5vw, 22px)", borderWidth: "3.5px" },
+    { min: 601, max: 768, tamaño: "min(7vw, 42px)", fontSize: "clamp(13px, 2vw, 20px)", borderWidth: "3px" },
+    { min: 376, max: 600, tamaño: "min(9vw, 38px)", fontSize: "clamp(12px, 1.8vw, 18px)", borderWidth: "2.5px" },
+    { min: 320, max: 375, tamaño: "min(11vw, 32px)", fontSize: "clamp(12px, 1.6vw, 16px)", borderWidth: "2px" }
 ];
 
 function getResponsiveValues() {
@@ -185,6 +185,7 @@ lantanidos.textContent = "57-71";
 lantanidos.style.gridColumn = 3;
 lantanidos.style.gridRow = 6;
 lantanidos.style.width = tamaño;
+lantanidos.style.fontSize = fontSize;
 lantanidos.style.height = tamaño;
 tabla.appendChild(lantanidos);
 
@@ -196,6 +197,7 @@ actinidos.textContent = "89-103";
 actinidos.style.gridColumn = 3;
 actinidos.style.gridRow = 7;
 actinidos.style.width = tamaño;
+actinidos.style.fontSize = fontSize;
 actinidos.style.height = tamaño;
 tabla.appendChild(actinidos);
 
